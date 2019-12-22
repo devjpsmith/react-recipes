@@ -4,6 +4,14 @@ import MenuBarItem from './MenuBarItem';
 import MenuBarSearch from './MenuBarSearch';
 
 class MenuBar extends React.Component {
+
+    static page = {
+        home: 'Home',
+        calendar: 'Meal Calendar',
+        groceries: 'Groceries',
+        favorites: 'Favorites'
+    }
+
     constructor(props) {
         super(props);
 
@@ -12,10 +20,12 @@ class MenuBar extends React.Component {
 
     onItemClicked = name => {
         this.setState({ activeItem: name });
+        this.props.onPageSelected(name);
     }
 
     onSearchSubmit = term => {
         console.log(term);
+        this.props.onSearchSubmit(term);
     }
 
     render() {
@@ -26,21 +36,21 @@ class MenuBar extends React.Component {
                 <div className="ui raised segment">
                     <div className="ui secondary menu">
                         <MenuBarItem 
-                            isActive={this.state.activeItem === 'Home'}
+                            isActive={this.state.activeItem === MenuBar.page.home}
                             onItemClicked={this.onItemClicked} 
-                            name="Home" />
+                            name={MenuBar.page.home} />
                         <MenuBarItem 
-                            isActive={this.state.activeItem === 'Meal Calendar'}
+                            isActive={this.state.activeItem === MenuBar.page.calendar}
                             onItemClicked={this.onItemClicked}
-                            name="Meal Calendar" />
+                            name={MenuBar.page.calendar} />
                         <MenuBarItem 
-                            isActive={this.state.activeItem === 'Groceries'}
+                            isActive={this.state.activeItem === MenuBar.page.groceries}
                             onItemClicked={this.onItemClicked}
-                            name="Groceries" />
+                            name={MenuBar.page.groceries} />
                         <MenuBarItem 
-                            isActive={this.state.activeItem === 'Favorites'}
+                            isActive={this.state.activeItem === MenuBar.page.favorites}
                             onItemClicked={this.onItemClicked}
-                            name="Favorites" />
+                            name={MenuBar.page.favorites} />
                         <div className="right menu">
                             <MenuBarSearch onSearchSubmit={this.onSearchSubmit} />
                             <a className="ui item">{loginText}</a>
