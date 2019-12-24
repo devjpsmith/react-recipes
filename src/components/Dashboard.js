@@ -18,7 +18,7 @@ class Dashboard extends React.Component {
                 ? <i className="heart icon"></i>
                 : <i className="heart outline icon"></i>; 
             return (
-                <div className="ui card">
+                <div key={meal.id} className="ui card">
                     <div className="content">
                         <div className="ui small header">
                             {meal.title}

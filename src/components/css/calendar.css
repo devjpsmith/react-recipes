@@ -1,0 +1,25 @@
+div.card {
+    border-radius: 0px !important;
+}
+
+.calendar-header {
+    text-align: center;
+}
+
+i.calendar-header {
+    padding-right: 2em;
+    padding-left: 2em;
+    font-size: 1.4em;
+}
+
+.row.calendar {
+    height: 155px;
+}
+
+.card.calendar {
+    height: 130px;
+}
+
+.card.calendar.odd {
+    background-color: #DDDDDD;
+}

@@ -1,4 +1,4 @@
-import './css/menu-bar.css';
+import '../css/menu-bar.css';
 import React from 'react';
 import MenuBarItem from './MenuBarItem';
 import MenuBarSearch from './MenuBarSearch';
@@ -24,7 +24,6 @@ class MenuBar extends React.Component {
     }
 
     onSearchSubmit = term => {
-        console.log(term);
         this.props.onSearchSubmit(term);
     }
 

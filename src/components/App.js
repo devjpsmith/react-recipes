@@ -1,16 +1,20 @@
 import React from 'react';
-import MenuBar from './MenuBar';
+import MenuBar from './menu/MenuBar';
 import MainContent from './MainContent';
 import Dashboard from './Dashboard';
-import Calendar from './Calendar';
+import Calendar from './calendar/Calendar';
 import Groceries from './Groceries';
 import Favorites from './Favorites';
 import SearchResults from './SearchResults';
+import recipeApi, { DEFAULT_PARAMS }from '../apis/recipes';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { page: <Dashboard /> }
+        this.state = { 
+            page: <Dashboard /> ,
+            searchHits: []
+        };
     }
 
     getPageByName(pageName) {
@@ -28,7 +32,18 @@ class App extends React.Component {
     }
 
     onSearchSubmit = term => {
-        this.setState({page: <SearchResults />});
+        if (term) {
+            recipeApi.get('', {
+                params: {
+                    ...DEFAULT_PARAMS,
+                    q: term
+                }
+            })
+            .then(res => {
+                this.setState({ page: <SearchResults hits={res.data.hits} />})
+            });
+            this.setState({page: <SearchResults />});
+        }
     };
 
     render() {
